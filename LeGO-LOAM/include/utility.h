@@ -43,14 +43,17 @@
 #include <array>
 #include <thread>
 #include <mutex>
+#include "ouster_ros/point.h"
 
 #define PI 3.14159265
 
 using namespace std;
 
 typedef pcl::PointXYZI  PointType;
+typedef ouster_ros::Point PointXYZIR;
 
-extern const string pointCloudTopic = "/velodyne_points";
+//extern const string pointCloudTopic = "/velodyne_points";
+extern const string pointCloudTopic = "/os_cloud_node/points";
 extern const string imuTopic = "/imu/data";
 
 // Save pcd
@@ -60,12 +63,12 @@ extern const string fileDirectory = "/tmp/";
 extern const bool useCloudRing = true; // if true, ang_res_y and ang_bottom are not used
 
 // VLP-16
-extern const int N_SCAN = 16;
-extern const int Horizon_SCAN = 1800;
-extern const float ang_res_x = 0.2;
-extern const float ang_res_y = 2.0;
-extern const float ang_bottom = 15.0+0.1;
-extern const int groundScanInd = 7;
+//extern const int N_SCAN = 16;
+//extern const int Horizon_SCAN = 1800;
+//extern const float ang_res_x = 0.2;
+//extern const float ang_res_y = 2.0;
+//extern const float ang_bottom = 15.0+0.1;
+//extern const int groundScanInd = 7;
 
 // HDL-32E
 // extern const int N_SCAN = 32;
@@ -92,6 +95,14 @@ extern const int groundScanInd = 7;
 // extern const float ang_res_y = 33.2/float(N_SCAN-1);
 // extern const float ang_bottom = 16.6+0.1;
 // extern const int groundScanInd = 7;
+
+// Ouster OS1-32
+extern const int N_SCAN = 32;
+extern const int Horizon_SCAN = 1024;
+extern const float ang_res_x = 360.0/float(Horizon_SCAN);
+extern const float ang_res_y = 1.40625;
+extern const float ang_bottom = 31;
+extern const int groundScanInd = 20;
 
 // Ouster OS1-64
 // extern const int N_SCAN = 64;
@@ -150,7 +161,7 @@ struct by_value{
 /*
     * A point cloud type that has "ring" channel
     */
-struct PointXYZIR
+/*struct PointXYZIR
 {
     PCL_ADD_POINT4D
     PCL_ADD_INTENSITY;
@@ -162,7 +173,7 @@ POINT_CLOUD_REGISTER_POINT_STRUCT (PointXYZIR,
                                    (float, x, x) (float, y, y)
                                    (float, z, z) (float, intensity, intensity)
                                    (uint16_t, ring, ring)
-)
+)*/
 
 /*
     * A point cloud type that has 6D pose info ([x,y,z,roll,pitch,yaw] intensity is time stamp)

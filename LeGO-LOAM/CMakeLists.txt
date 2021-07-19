@@ -36,6 +36,9 @@ include_directories(
 	${PCL_INCLUDE_DIRS}
 	${OpenCV_INCLUDE_DIRS}
 	${GTSAM_INCLUDE_DIR}
+	"/home/claydergc/Libraries/ouster_example/ouster_ros/include"
+	"/home/claydergc/Libraries/ouster_example/ouster_client/include"
+	"/home/claydergc/Libraries/ouster_example/ouster_client/include/optional-lite"
 )
 
 link_directories(
