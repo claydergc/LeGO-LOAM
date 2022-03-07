@@ -10,7 +10,7 @@
 
 #include "cloud_msgs/cloud_info.h"
 
-#include <opencv/cv.h>
+#include <opencv2/opencv.hpp>
 
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
@@ -57,7 +57,7 @@ extern const string pointCloudTopic = "/os_cloud_node/points";
 extern const string imuTopic = "/imu/data";
 
 // Save pcd
-extern const string fileDirectory = "/tmp/";
+extern const string fileDirectory = "/home/claydergc/";
 
 // Using velodyne cloud "ring" channel for image projection (other lidar may have different name for this channel, change "PointXYZIR" below)
 extern const bool useCloudRing = true; // if true, ang_res_y and ang_bottom are not used
@@ -101,7 +101,8 @@ extern const int N_SCAN = 32;
 extern const int Horizon_SCAN = 1024;
 extern const float ang_res_x = 360.0/float(Horizon_SCAN);
 extern const float ang_res_y = 1.40625;
-extern const float ang_bottom = 31;
+//extern const float ang_bottom = 31;
+extern const float ang_bottom = 20.79; //be careful with this value!
 extern const int groundScanInd = 20;
 
 // Ouster OS1-64

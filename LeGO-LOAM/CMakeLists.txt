@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(lego_loam)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
+SET(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -O3")
 
 find_package(catkin REQUIRED COMPONENTS
   tf
@@ -10,8 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
 
-  pcl_ros
-  pcl_conversions
+  #pcl_ros
+  #pcl_conversions
 
   std_msgs
   sensor_msgs
@@ -21,13 +22,13 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(GTSAM REQUIRED QUIET)
-find_package(PCL REQUIRED QUIET)
+find_package(PCL 1.12.1 REQUIRED QUIET)
 find_package(OpenCV REQUIRED QUIET)
 
 catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS cloud_msgs
-  DEPENDS PCL
+  #DEPENDS PCL
 )
 
 include_directories(
@@ -61,3 +62,4 @@ target_link_libraries(mapOptmization ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${Open
 
 add_executable(transformFusion src/transformFusion.cpp)
 target_link_libraries(transformFusion ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES})
+
